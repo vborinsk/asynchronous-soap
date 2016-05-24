@@ -76,6 +76,7 @@ class SoapClientAsync extends SoapClient
      */
     public function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
+        $origAction    = $action;
         $action        = static::$action;
         $actionCommand = static::$action;
         $actionMethod  = $action;
@@ -133,7 +134,7 @@ class SoapClientAsync extends SoapClient
             'Content-type: text/xml',
             'charset=utf-8',
             "Accept: text/xml",
-            'SOAPAction: "' . $action . '"',
+            'SOAPAction: "' . $origAction . '"',
             "Content-length: " . strlen($request),
         ];
         // ssl connection sharing
